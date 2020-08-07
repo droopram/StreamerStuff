@@ -1,0 +1,168 @@
+body{
+	font-family:'Montserrat';
+}
+.sub-alert{
+  text-align:center;
+}
+#cut-wrapper{
+ position:relative;
+  width:100%;
+  height:10px;
+}
+.sub-alert h1, h2{
+  text-transform:uppercase;
+  color:{{usernameTextColor}};
+  text-shadow:1px 1px 3px #000;
+  font-style:italic;
+  font-size:10vw;
+  overflow:hidden;
+  margin:0;
+}
+.sub-alert h2{
+  text-transform: capitalize;
+  color:{{topTextColor}};
+  font-size:8vw;
+}
+#line-1, #line-2{
+  position:absolute;
+  width:100vw;
+  text-align:center;
+}
+
+#line-1{
+  animation:cutTextTopHalf;
+  animation-duration:{{cuttingAnimationDuration}}s;
+  animation-delay:{{cuttingAnimationDelay}}s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+#line-2{
+  opacity:0;
+  animation:cutTextBottomHalf;
+  animation-duration:{{cuttingAnimationDuration}}s;
+  animation-delay:{{cuttingAnimationDelay}}s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+#line-1::before, #line-2::before{
+  display:block;
+  content:" ";
+  position:absolute;
+  top:0%;
+  width:10vw;
+  height:10vw;
+  margin:auto;
+  background-image:url({{animationSprite}});
+  background-size:cover;
+  animation:sprite;
+  animation-duration:{{animationSpriteDuration}}s;
+  animation-delay:0s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+}
+
+#line-1::after, #line-2::after{
+  display:block;
+  content:" ";
+  position:absolute;
+  top:50%;
+  background:#fff;
+  height:3px;
+  width:100%;
+  margin:auto;
+  box-shadow:0px 0px 10px {{slashEffectColor}};
+  animation:slash;
+  animation-duration:{{cuttingAnimationDuration}}s;
+  animation-delay:{{cuttingAnimationDelay}}s;
+  animation-iteration-count: 1;
+  animation-fill-mode: backwards;
+  animation-timing-function: ease;
+}
+
+@keyframes slash{
+  0%{
+    opacity:0;
+    transform:scaleX(0);
+  }
+  5%{
+    opacity:1;
+    transform:scaleX(.7);
+  }
+  25%{
+    transform:scaleX(1);
+  }
+  50%{
+    opacity:0;
+  }
+  100%{
+    opacity:0;
+  }
+}
+
+
+@keyframes cutTextTopHalf{
+  0%{
+    opacity:1;
+    clip-path:none;
+    transform:translateX(0);
+  }
+  1%{
+    clip-path: inset(0% 0% 50% 0%);
+  }
+  70%{
+    transform:translateX(-25px);
+    opacity:1;
+  }
+  100%{
+    transform:translateX(-25px);
+    clip-path: inset(0% 0% 50% 0%);
+    opacity:0;
+  }
+}
+
+@keyframes cutTextBottomHalf {
+  0%{
+    opacity:0;
+    clip-path:none;
+    transform:translateX(0);
+  }
+  1%{
+    opacity:1;
+    clip-path: inset(50% 0% 0% 0%);
+  }
+  70%{
+    transform:translateX(25px) rotate(0deg);
+    transform-origin:0% 0%;
+    opacity:1;
+  }
+  100%{
+    transform:translate(25px, 80px) rotate(10deg);
+    transform-origin:0% 0%;
+    clip-path: inset(50% 0% 0% 0%);
+    opacity:0;
+  }
+}
+
+@keyframes sprite{
+  0%{
+    transform:translateX(10vw);
+    opacity:1;
+  }
+  25%{
+    transform:translateX(10vw);
+    opacity:1;
+  }
+  75%{
+    transform:translateX(80vw);
+    opacity:1;
+  }
+  100%{
+    transform:translateX(80vw);
+    opacity:0; 
+  }
+}
