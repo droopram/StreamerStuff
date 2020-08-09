@@ -43,7 +43,7 @@ window.addEventListener('onEventReceived', function (obj) {
         },
         {
             enabled: includeSubs,
-            text: 'Sub',
+            text: 'New Sub',
             type:'subscriber',
         },
         {
