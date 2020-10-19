@@ -10,14 +10,15 @@ let timer = null,
     includeTips = true,
     minTip = 0,
     includeCheers = true,
-    minCheer = 0;
+    minCheer = 0,
+    audio = null;
 
 let alertElements = [];
 
 let userCurrency,
     totalEvents = 0;
 
-window.addEventListener('onEventReceived', function (obj) {
+window.addEventListener('onEventReceived', function(obj) {
     if (!obj.detail.event) {
         return;
     }
@@ -30,31 +31,30 @@ window.addEventListener('onEventReceived', function (obj) {
 
     //What we do here is build an array with all the alerts we want and the data it supposed to have.
     //This way we can just loop through the array and call the 'alert'  function.
-    let alerts = [
-        {
+    let alerts = [{
             enabled: includeFollowers,
             text: 'New follower',
-            type:'follower',
+            type: 'follower',
         },
         {
             enabled: includeRedemptions,
             text: 'Redeemed',
-            type:'redemption',
+            type: 'redemption',
         },
         {
             enabled: includeSubs,
             text: 'New Sub',
-            type:'subscriber',
+            type: 'subscriber',
         },
         {
             enabled: includeHosts && minHost <= event.amount,
             text: `Host ${event.amount.toLocaleString()}`,
-            type:'host',
+            type: 'host',
         },
         {
             enabled: includeRaids && minRaid <= event.amount,
             text: `${event.amount.toLocaleString()} Bits`,
-            type:'cheer',
+            type: 'cheer',
         },
         {
             enabled: includeTips && minTip <= event.amount,
@@ -63,16 +63,16 @@ window.addEventListener('onEventReceived', function (obj) {
                 minimumFractionDigits: 0,
                 currency: userCurrency.code
             }),
-            type:'tip',
+            type: 'tip',
         },
         {
             enabled: includeCheers && minCheer <= event.amount,
-            text:`Raid ${event.amount.toLocaleString()}`,
-            type:'raid',
+            text: `Raid ${event.amount.toLocaleString()}`,
+            type: 'raid',
         }
     ];
-    
-    alerts.forEach( alert => {
+
+    alerts.forEach(alert => {
         if (alert.enabled && listener === alert.type) {
             addAlert(alert.type, alert.text, event.name);
         }
@@ -80,7 +80,7 @@ window.addEventListener('onEventReceived', function (obj) {
 });
 
 
-window.addEventListener('onWidgetLoad', function (obj) {
+window.addEventListener('onWidgetLoad', function(obj) {
     //Initialize widget. Load variables from streamelements thingies.
     userCurrency = obj.detail.currency;
     const fieldData = obj.detail.fieldData;
@@ -98,12 +98,16 @@ window.addEventListener('onWidgetLoad', function (obj) {
     userLocale = fieldData.locale;
     cuttingAnimationDelay = fieldData.cuttingAnimationDelay;
     cuttingAnimationDuration = fieldData.cuttingAnimationDuration;
+    let audioFile = "{{SoundEffect}}"
+    if (audioFile != null && audioFile.length > 0) {
+        audio = new Audio(audioFile);
+    }
 });
 
 function addAlert(type, text, username) {
     totalEvents += 1;
-    let element; 
-    
+    let element;
+
     element = `
     <div id="event-${totalEvents}">
       <div id="ninja">
@@ -128,32 +132,35 @@ function addAlert(type, text, username) {
     if (alertElements.length === 1 && !timer) renderAlerts();
 }
 
-function renderAlerts(){
+function renderAlerts() {
     if (alertElements.length > 0) {
         element = alertElements[0];
         $('.main-container').html(element);
-      
-      	//A little hack to reset the gif-animation.
-       var anim = $('#gif-anim').attr('src');
-      anim = anim.replace(/\?.*$/,"")+"?x="+Math.random();
-      $('#gif-anim').attr('src', anim);
-      
-      //Play sound
-      let audioFile = "{{SoundEffect}}"
-  		if(audioFile != null && audioFile.length > 0){
-        	let audio = new Audio(audioFile);
-          	audio.volume = {{SoundVolume}} * 0.01;
+
+        //A little hack to reset the gif-animation.
+        var anim = $('#gif-anim').attr('src');
+        anim = anim.replace(/\?.*$/, "") + "?x=" + Math.random();
+        $('#gif-anim').attr('src', anim);
+
+        //Play sound
+        if (audio != null) {
+
+            audio.volume = {{SoundVolume}}* 0.01;
+            audio.loop = false;
             audio.play();
         }
-      
+
+
         alertElements.shift();
-      	clearTimeout(timer);
+        clearTimeout(timer);
         timer = setTimeout(() => {
-            $('.main-container > div').animate({ opacity: 0 }, 'slow', function () {
-              $('.main-container > div').remove();
-              renderAlerts();
-              timer=null;
-          	});
+            $('.main-container > div').animate({
+                opacity: 0
+            }, 'slow', function() {
+                $('.main-container > div').remove();
+                renderAlerts();
+                timer = null;
+            });
         }, 4000);
     }
 }
