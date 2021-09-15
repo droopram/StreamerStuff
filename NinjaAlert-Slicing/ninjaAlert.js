@@ -98,6 +98,8 @@ window.addEventListener('onWidgetLoad', function (obj) {
     userLocale = fieldData.locale;
     cuttingAnimationDelay = fieldData.cuttingAnimationDelay;
     cuttingAnimationDuration = fieldData.cuttingAnimationDuration;
+    alertAudio = new Audio(fieldData.alertAudio);
+    audioDelay = fieldData.audioDelay;
 });
 
 function addAlert(type, text, username) {
@@ -126,13 +128,18 @@ function renderAlerts(){
         element = alertElements[0];
         $('.main-container').html(element);
         alertElements.shift();
-        console.log('timer set up');
+      
         timer = setTimeout(() => {
             console.log('timer ran out');
             $('.main-container').html('');
             renderAlerts();
             timer = null;
         }, (cuttingAnimationDelay + cuttingAnimationDuration) * 1000);
+      
+      	//Play audio after a set delay.
+      	setTimeout(()=>{
+      		alertAudio.play();
+      	}, audioDelay * 1000)
     }
 }
 
