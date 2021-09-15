@@ -43,6 +43,15 @@
       "no": "No"
     }
   },
+ "alertAudio": {
+   "type": "sound-input",
+   "label": "Alert Audio"
+ },
+  "audioDelay":{
+    "type":"number",
+    "label": "Delay audio (in seconds)",
+    "value":0
+  },
   "includeRedemptions": {
     "type": "dropdown",
     "label": "Display redemptions:",
