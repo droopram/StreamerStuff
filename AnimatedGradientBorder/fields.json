@@ -1,51 +1,56 @@
 {
-    "animationSpeed":{
-        "type":"number",
-      "label":"Animation Speed in seconds",
-      "value":5
-    },
-    "gradientDir": {
-      "type": "dropdown",
-      "label": "Gradient Animation Direction:",
-      "value": "x1='0%' y1='0%' x2='100%' y2='100%'",
-      "options": {
-        "x1='0%' y1='0%' x2='0%' y2='100%'": "Horizontal",
-        "x1='0%' y1='100%' x2='0%' y2='0%'": "Horizontal Reversed",
-        "x1='0%' y1='0%' x2='100%' y2='0%'": "Vertical",
-        "x1='100%' y1='0%' x2='0%' y2='0%'": "Vertical Reversed",
-        "x1='0%' y1='0%' x2='100%' y2='100%'": "Bottom Right",
-        "x1='70%' y1='0%' x2='0%' y2='70%'": "Bottom Left",
-        "x1='0%' y1='70%' x2='70%' y2='0%'": "Top Right",
-        "x1='100%' y1='100%' x2='0%' y2='0%'": "Top Left"
-      }
-    },
-    "borderRadius":{
-        "type":"number",
-      "label":"Border radius (round corners) %",
-      "value":"0"
-    },
-    "borderWidth":{
-      "type":"number",
-      "label":"Border width (thicc-ness)",
-      "value":"10"
-    },
-    "color1": {
-      "type": "colorpicker",
-      "label": "First color",
-      "value": "#00FFFF"
-    },
-    "color2": {
-      "type": "colorpicker",
-      "label": "Second color",
-      "value": "#FF00FF"
-    },
-    "maskedMode": {
-      "type": "dropdown",
-      "label": "Use masked mode?",
-      "value": "Disabled",
-      "options": {
-        "0": "Disabled",
-        "1": "Enabled"
-      }
+  "animationSpeed":{
+  	"type":"number",
+    "label":"Animation Speed in seconds",
+    "value":5
+  },
+  "gradientDir": {
+    "type": "dropdown",
+    "label": "Gradient Animation Direction:",
+    "value": "x1='0%' y1='0%' x2='100%' y2='100%'",
+    "options": {
+      "x1='0%' y1='0%' x2='0%' y2='100%'": "Horizontal",
+      "x1='0%' y1='100%' x2='0%' y2='0%'": "Horizontal Reversed",
+      "x1='0%' y1='0%' x2='100%' y2='0%'": "Vertical",
+      "x1='100%' y1='0%' x2='0%' y2='0%'": "Vertical Reversed",
+      "x1='0%' y1='0%' x2='100%' y2='100%'": "Bottom Right",
+      "x1='70%' y1='0%' x2='0%' y2='70%'": "Bottom Left",
+      "x1='0%' y1='70%' x2='70%' y2='0%'": "Top Right",
+      "x1='100%' y1='100%' x2='0%' y2='0%'": "Top Left"
+    }
+  },
+  "borderRadius":{
+  	"type":"number",
+    "label":"Border radius (round corners) %",
+    "value":"0"
+  },
+  "borderWidth":{
+    "type":"number",
+    "label":"Border width (thicc-ness)",
+    "value":"10"
+  },
+  "color1": {
+    "type": "colorpicker",
+    "label": "First color",
+    "value": "#00FFFF"
+  },
+  "color2": {
+    "type": "colorpicker",
+    "label": "Second color",
+    "value": "#FF00FF"
+  },
+  "color3": {
+    "type": "colorpicker",
+    "label": "Third color",
+    "value": "#FF00FF"
+  },
+  "maskedMode": {
+    "type": "dropdown",
+    "label": "Use masked mode?",
+    "value": "Disabled",
+    "options": {
+      "0": "Disabled",
+      "1": "Enabled"
     }
   }
+}
