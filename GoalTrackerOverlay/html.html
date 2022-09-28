@@ -1,0 +1,16 @@
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+<div class="main-container">
+	<div class="radials-wrapper">
+      	<svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">
+         <circle id="subs" cx="80" cy="80" r="70" stroke-linecap="round" />
+         <circle id="bits" cx="80" cy="80" r="50" stroke-linecap="round" />
+         <circle id="follows" cx="80" cy="80" r="30" stroke-linecap="round" />
+ 		</svg>
+        <div id="labels">
+          <span class="subs-label" data-binding="subsGoalText">0/{{subGoal}} Daily Subs</span>
+          <span class="bits-label" data-binding="bitsGoalText">0/{{bitsGoal}} Daily bits</span>
+          <span class="follows-label" data-binding="followerGoalText">{{newFollowers}}/{{followerGoal}} Follows</span>
+        </div>
+      </div>
+  </div>
+</div>

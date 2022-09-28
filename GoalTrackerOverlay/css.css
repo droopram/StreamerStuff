@@ -1,0 +1,66 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    color: {{fontColor}};
+    font-size: 14px;
+}
+:root{
+	--subsStrokeOffset: 440;
+	--bitsStrokeOffset: 314;
+	--followsStrokeOffset: 190;
+}
+.radials-wrapper{
+	background:#1a1a1a;
+  	height:200px;
+  	width:500px;
+    border-radius:40px;
+  position:relative;
+}
+svg{
+  position:absolute;
+  left:5%;
+  top:50%;
+  transform: translateY(-50%);
+}
+#labels{
+	position:absolute;
+    left:50%;
+  top:50%;
+  transform: translateY(-50%) translateX(-20%);
+}
+.subs-label, .bits-label,.follows-label{
+	font-weight:bold;
+  font-size:24px;
+  display:block;
+}
+#subs, #bits, #follows{
+      fill:none;
+    stroke-width:15px;
+  animation-duration:1s;
+  animation-fill-mode:forwards;
+  animation-timing-function: cubic-bezier(0.785, 0.135, 0.150, 0.860);
+  transition: stroke-dashoffset 1s cubic-bezier(0.785, 0.135, 0.150, 0.860);
+}
+#subs{
+  stroke: #dd1e23;
+  stroke-dasharray:440;
+  stroke-dashoffset:var(--subsStrokeOffset);
+}
+.subs-label{
+    color: #dd1e23;
+}
+#bits{
+    stroke: #63dd01;
+  stroke-dasharray:314;
+      stroke-dashoffset:var(--bitsStrokeOffset);
+}
+.bits-label{
+    color: #63dd01;
+}
+#follows{
+    stroke: #0165dc;
+  stroke-dasharray:190;
+      stroke-dashoffset:var(--followsStrokeOffset);
+}
+.follows-label{
+    color: #0165dc;
+}

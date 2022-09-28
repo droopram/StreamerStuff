@@ -1,0 +1,17 @@
+{
+    "subGoal": {
+      "type": "number",
+      "label": "Sub goal:",
+      "value": 5
+    },
+    "followerGoal": {
+      "type": "number",
+      "label": "Follower goal:",
+      "value": 400
+    },
+    "bitsGoal": {
+      "type": "number",
+      "label": "Bits goal:",
+      "value": 100
+    }
+}
